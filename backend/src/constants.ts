@@ -1,0 +1,9 @@
+export const CATALOG_PREFIX = 'catalog-';
+export const NEW_ORDER_PREFIX = 'new:';
+export const CANCEL_ORDER_PREFIX = ':cancel';
+export const SEMICOLON_SPLITTER = ':';
+export const SPLITTER = '-';
+export const DEFAULT_MESSAGE = `I didn't understand you. Please, type your message with specified prefix`;
+export const NEW_CATALOG_PREFIX = 'new_catalog&';
+export const AMPERSAND_SPLITTER = '&';
+export const NEW_STUFF_PREFIX = 'new_stuff&';
