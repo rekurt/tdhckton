@@ -7,7 +7,7 @@ import {
   NEW_ORDER_PREFIX as EDIT_ORDER_PREFIX,
   SEMICOLON_SPLITTER,
   SPLITTER,
-} from "../../constants";
+} from "../constants";
  
 import { Catalog, Context } from "../interfaces";
 import {
@@ -15,8 +15,8 @@ import {
   formGreetings,
   getDeliverOrderString,
   parseMessage
-} from "../../helpers";
-import { OrderStatuses } from "../../shared.types";
+} from "../helpers";
+import { OrderStatuses } from "../shared.types";
 import { commands } from "src/telegram.config";
 
 @Injectable()

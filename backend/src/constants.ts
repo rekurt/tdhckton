@@ -6,4 +6,4 @@ export const SPLITTER = '-';
 export const DEFAULT_MESSAGE = `I didn't understand you. Please, type your message with specified prefix`;
 export const NEW_CATALOG_PREFIX = 'new_catalog&';
 export const AMPERSAND_SPLITTER = '&';
-export const NEW_STUFF_PREFIX = 'new_stuff&';
+export const NEW_BID_PREFIX = 'new_stuff&';

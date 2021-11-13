@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { SharedModule } from "../../shared.module";
+import { SharedModule } from "../shared.module";
 import { TelegramService } from "./telegram.service";
 import { TelegramUpdate } from "./telegram.update";
 
