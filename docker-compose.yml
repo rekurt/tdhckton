@@ -42,6 +42,7 @@ services:
     restart: always
     volumes:
       - ./data/db:/data/db
+      - ./tools/import:/data/import
     ports:
       - 28017:27017 
     networks:
