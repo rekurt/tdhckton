@@ -127,3 +127,23 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+data/db/_mdb_catalog.wt
+data/db/collection-0--6069798093392741272.wt
+data/db/collection-2--6069798093392741272.wt
+data/db/collection-4--6069798093392741272.wt
+data/db/index-1--6069798093392741272.wt
+data/db/index-3--6069798093392741272.wt
+data/db/index-5--6069798093392741272.wt
+data/db/index-6--6069798093392741272.wt
+data/db/mongod.lock
+data/db/sizeStorer.wt
+data/db/storage.bson
+data/db/WiredTiger
+data/db/WiredTiger.lock
+data/db/WiredTiger.turtle
+data/db/WiredTiger.wt
+data/db/WiredTigerHS.wt
+data/db/diagnostic.data/metrics.2021-11-13T15-54-37Z-00000
+data/db/journal/WiredTigerLog.0000000001
+data/db/journal/WiredTigerPreplog.0000000001
+data/db/journal/WiredTigerPreplog.0000000002
