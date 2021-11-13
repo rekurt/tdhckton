@@ -106,7 +106,7 @@ this.logger = new Logger(ActionService.name)
         chatTitle = chat.title;
       }
 
-      const telegramChat = new TelegramChat();
+      const telegramChat = new Chat();
       telegramChat.telegramId = from.id;
       telegramChat.chatId = chat.id;
       telegramChat.user = user;

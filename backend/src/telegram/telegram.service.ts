@@ -9,7 +9,7 @@ import {
   SPLITTER,
 } from "../constants";
  
-import { Catalog, Context } from "../interfaces";
+import { Catalog, Context } from "../entities/interfaces";
 import {
   formConfirmedOrderString,
   getDeliverOrderString,

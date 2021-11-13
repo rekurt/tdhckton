@@ -1,6 +1,6 @@
 import { Command, Ctx, Message, On, Start, Update } from "nestjs-telegraf";
 import { TelegramService } from "./telegram.service";
-import { Context } from "../interfaces";
+import { Context } from "../entities/interfaces";
 import { formCatalogString } from "../helpers";
 import {
   CANCEL_ORDER_PREFIX,
