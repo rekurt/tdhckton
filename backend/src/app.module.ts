@@ -11,7 +11,6 @@ import { TelegramModule } from "./telegram/telegram.module";
     }),
     TelegrafModule,
     TelegramModule
-
   ],
   providers: [
     // {

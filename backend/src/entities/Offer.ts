@@ -1,1 +1,3 @@
-//import { OrderEntity, ItemEntity as ItemEntity } from "../../entities";
+export class IOffer {
+    
+}

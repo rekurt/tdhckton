@@ -1,5 +1,5 @@
 import { BaseNotify } from "./BaseNotify";
 
-export class FeedUpdate extends BaseNotify {
+export class LostBid extends BaseNotify {
 
 }

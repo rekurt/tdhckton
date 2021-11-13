@@ -1,5 +1,25 @@
 import { Document, Schema } from 'mongoose';
 
+export const CTEOptionSchema = new Schema({
+    Name: {
+        type: String,
+        unique: true,
+        index: true,
+      },
+      id: {
+          type: String,          
+          index: true,
+      },
+      Value: {
+        type: String
+      },
+      Unit: {
+        type: String,
+      },
+  },
+   { timestamps: true }
+);
+
 export const CTESchema = new Schema({
     email: {
       type: String,
@@ -7,95 +27,32 @@ export const CTESchema = new Schema({
       unique: true,
       index: true,
     },
-    description: {
-      type: String,
+    CTE_id : {
+        type: Number,
+        index: true,
     },
-    verifiedEmail: {
-      type: Boolean,
-      default: false,
+    CTE_name : {
+        type: String,
+        index: true,
     },
-    verifyingCode: {
-      type: String,
-      unique: true,
-      index: true,
+    Category :  {
+        index: true,
+        type: String
     },
-    ref: {
-      type: String,
-      unique: true,
-      index: true,
+    Category_id : {
+        index: true,
+        type: String
     },
-    refBalance: {
-      type: Number,
-      default: 0,
-      required: false,
-    },
-    lastname: {
-      type: String,
-      required: false,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    male: {
-      type: String,
-      required: false,
-    },
-    city: {
-      type: String,
-      required: false,
-    },
-    country: {
-      type: String,
-      required: false,
-    },
-    birthdate: {
-      type: String,
-      required: false,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    extra: {
-      type: Map,
-      default: new Map(),
+    Properties : {
+        type: Array,
+        of: CTEOptionSchema
     },
   }, { timestamps: true });
 
+export class CTEDocument extends Document {
+  options: ICTEOption[];
 
-export const CTEOptionSchema = new Schema({
-    
-  },
-   { timestamps: true }
-);
 
-export class User extends Document {
-  email: string;
-
-  verifiedEmail: boolean;
-
-  verifyingCode: string;
-
-  ref: string;
-
-  name: string;
-
-  refBalance: number;
-
-  password: string;
-
-  extra: Map<string, any>;
-
-  city?: string;
-
-  country?: string;
-
-  birthdate?: string;
-
-  lastname?: string;
-
-  male?: string;
 }
 
 export class ICTEOption {
