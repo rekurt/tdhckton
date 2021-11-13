@@ -20,8 +20,8 @@ console.log({
 
   @Start()
   async start(@Ctx() ctx: Context) {
-    const greetings = this.telegramService.getGreetings(ctx);
-    await ctx.reply(greetings);
+    const greetings = this.telegramService.getMenu(ctx);
+    // await ctx.reply(greetings);
   }
 
   @Command('show_cats')
@@ -60,18 +60,18 @@ console.log({
     await ctx.reply('NEW_STUFF_MESSAGE');
   }
 
-  @On('text')
-  async showCategoryItems(
-    @Message('text') message: string,
-    @Ctx() ctx: Context,
-  ) {
-    const result = await this.telegramService.handleTextMessage(ctx, message);
-    await ctx.reply(result, { parse_mode: 'HTML' });
+  // @On('text')
+  // async showCategoryItems(
+  //   @Message('text') message: string,
+  //   @Ctx() ctx: Context,
+  // ) {
+  //   const result = await this.telegramService.handleTextMessage(ctx, message);
+  //   await ctx.reply(result, { parse_mode: 'HTML' });
 
-    if (message.includes(CANCEL_ORDER_PREFIX)) {
-      await this.start(ctx);
-    }
-    console.log(ctx)
-  }
+  //   if (message.includes(CANCEL_ORDER_PREFIX)) {
+  //     await this.start(ctx);
+  //   }
+  //   console.log(ctx)
+  // }
 
 }
