@@ -1,10 +1,10 @@
 import { Scenes, Markup } from 'telegraf';
 
-export const hotPurchasesScene = new Scenes.BaseScene<any>(
+export const hotPurchasesScene = new Scenes.BaseScene<Scenes.SceneContext>(
   'HOT_PURCHASES_SCENE',
 );
 
-hotPurchasesScene.enter((ctx) => {
+hotPurchasesScene.enter((ctx: any) => {
   let currentPurchase = null;
   const index = 0;
 
@@ -32,13 +32,7 @@ hotPurchasesScene.enter((ctx) => {
     id,
   } = currentPurchase;
 
-  return ctx.reply(
-    `Горящие закупки: ${index + 1} из ${count}
-            Номер: ${id}
-            ${itemName}, в  кол. ${quantity}
-            До завершения: ${beforeEnd}
-            Текущая цена: ${currentPrice} р., за единицу ${currentPriceOneItem} р.
-            Заказчик: ${customerName}`,
+  return ctx.reply('8',
     Markup.inlineKeyboard(
       [
         Markup.button.callback('Сделать ставку', 'HOT_PURCHASE_BID'),
@@ -74,7 +68,7 @@ hotPurchasesScene.action('HOT_PURCHASE_LATER', (ctx) => {
 
 hotPurchasesScene.action('zzz', (ctx) => {
   console.log('qqq');
-  console.log(ctx.wizard);
+
 
   ctx.reply('You choose movie, your loss');
   //   ctx.session.hotPurchases.preferenceType = 'Movie';
@@ -140,3 +134,5 @@ const FAKE_PURCHASES = [
     isProcessed: false,
   },
 ];
+
+export default hotPurchasesScene
