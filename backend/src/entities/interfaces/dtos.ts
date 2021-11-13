@@ -61,21 +61,21 @@ export class AuctionDTO {
 }
 
 export class ChatDTO {
-  id: number;
+  id?: string;
 
-  telegramId?: string;
+  chatId?: number;
 
-  chatId: string;
+  isAuth?: boolean;
 
-  isAuth: boolean;
+  authCode?: string;
 
-  authCode: string;
+  chatTitle?: string;
 
-  chatTitle: string;
+  inn?: number;
 
-  createdAt: Date;
+  createdAt?: Date;
 
-  updatedAt: Date;
+  updatedAt?: Date;
 }
 
 export class ContractDTO {

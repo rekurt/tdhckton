@@ -17,3 +17,17 @@ export enum IOfferStatus {
   Declined = 'declined',
   Pending = 'pending',
 }
+
+export interface IAutoBidDTO {
+  offerId: number;
+  userId: string;
+  minAmount: number;
+  step: number;
+}
+
+export interface IBidConfigDTO {
+  offerId: number;
+  userId: string;
+  minAmount: number;
+  step: number;
+}

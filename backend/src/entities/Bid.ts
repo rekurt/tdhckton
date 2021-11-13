@@ -2,21 +2,27 @@ import { Document, Schema } from 'mongoose';
 
 export const BidSchema = new Schema(
   {
-    
+    id: { type: String },
+
+    supplierId: { type: String },
+
+    auctionId: { type: String, index: true },
+
+    amount: { type: Number },
+
+    stepAmount: { type: Number },
+
+    createdAt: { type: Number },
   },
   { timestamps: true },
 );
 
-export class ContractDocument extends Document {
+export class BidDocument extends Document {
   options: IContractOption[];
 }
 
 export class IContractOption {
   id: string;
 
-  currency: string;
-
   value: string;
-
-  data: any;
 }

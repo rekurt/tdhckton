@@ -7,11 +7,13 @@ import { CTESchema } from '../entities/CTE';
 import { BidsService } from './bids.service';
 import { BidSchema } from '../entities/Bid';
 import { OfferService } from './offers.service';
+import { OfferSchema } from '../entities/Offer';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
     MongooseModule.forFeature([{ name: 'CTE', schema: CTESchema }]),
+    MongooseModule.forFeature([{ name: 'Offer', schema: OfferSchema }]),
     MongooseModule.forFeature([{ name: 'Contract', schema: ContractSchema }]),
     MongooseModule.forFeature([{ name: 'Bid', schema: BidSchema }]),
   ],

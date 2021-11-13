@@ -1,11 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDTO } from './user.model';
+import { User } from './user.model';
 import { Injectable } from '@nestjs/common';
+import { ChatDTO } from '../interfaces/dtos';
 
 export class IUserCreatePayload {
-  chatId: string;
+  chatId: number;
 
   name: string;
 }
@@ -14,55 +15,46 @@ export type IPatchUserPayload = Partial<User>;
 
 @Injectable()
 export class UserService {
-  
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  prepareDTO(doc: User): UserDTO {
+  prepareDTO(doc: User): ChatDTO {
     if (!doc) {
       return null;
     }
     return {
       id: doc.id,
-      chatID: doc.chatID,
-      authToken: doc.authToken,
-      name: doc.name,
+      chatId: doc.chatID,
+      authCode: doc.authToken,
+      chatTitle: doc.name,
       inn: doc.inn,
     };
   }
 
-  async get(chatId: string): Promise<UserDTO> {
+  async get(chatId: number): Promise<ChatDTO> {
     const user = await this.getDocument(chatId);
     return this.prepareDTO(user);
   }
 
-  async getDocument(chatId: string): Promise<User> {
+  async getDocument(chatId: number): Promise<User> {
     return this.userModel.findOne({ chatId }).exec();
   }
 
   async getList(
-    userID: string,
-    courseID: string,
+    chatId: number,
     username: string,
     name: string,
-    email: string,
     skip = 0,
     limit = 10,
-  ): Promise<UserDTO[]> {
+  ): Promise<ChatDTO[]> {
     const query: any = {};
-    if (userID) {
-      query._id = userID;
+    if (chatId) {
+      query.chatId = chatId;
     }
     if (username) {
       query.username = { $regex: `.*${username}.*`, $options: 'i' };
     }
     if (name) {
       query.name = { $regex: `.*${name}.*`, $options: 'i' };
-    }
-    if (email) {
-      query.email = { $regex: `.*${email}.*`, $options: 'i' };
-    }
-    if (courseID) {
-      query.courseID = courseID;
     }
     const users = await this.userModel
       .find(query)
@@ -73,12 +65,12 @@ export class UserService {
     return users.map(this.prepareDTO);
   }
 
-  async getById(chatId: string): Promise<UserDTO> {
+  async getById(chatId: number): Promise<ChatDTO> {
     const user = await this.userModel.findOne({ chatId }).exec();
     return this.prepareDTO(user);
   }
 
-  async create(payload: IUserCreatePayload): Promise<UserDTO> {
+  async create(payload: IUserCreatePayload): Promise<ChatDTO> {
     const userDoc = await this.get(payload.chatId);
     if (userDoc) {
       return userDoc;
@@ -89,7 +81,7 @@ export class UserService {
     return this.prepareDTO(user);
   }
 
-  async edit(payload: IPatchUserPayload): Promise<UserDTO> {
+  async edit(payload: IPatchUserPayload): Promise<ChatDTO> {
     const { chatID } = payload;
     await this.userModel.updateOne({ chatID }, payload);
     return this.get(chatID);

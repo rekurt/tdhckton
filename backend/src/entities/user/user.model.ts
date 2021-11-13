@@ -3,7 +3,7 @@ import { Schema } from 'mongoose';
 export class UserDTO {
   readonly id: string;
 
-  chatID?: string;
+  chatID?: number;
 
   authToken?: string;
 
@@ -16,7 +16,7 @@ export type User = UserDTO & Document;
 
 export const UserSchema = new Schema({
   chatID: {
-    type: String,
+    type: Number,
     required: true,
     unique: true,
     index: true,

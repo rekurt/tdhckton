@@ -1,8 +1,9 @@
 import { Model } from 'mongoose';
 import { User } from 'src/entities/user/user.model';
+import {InjectModel} from "@nestjs/mongoose";
 
 export default class UserService {
-  constructor(private userRepository: Model<User>) {}
+  constructor(@InjectModel('User') private userRepository: Model<User>) {}
 
   async saveUser(chatId: number, name: string, message: string): Promise<any> {
     const payload = {

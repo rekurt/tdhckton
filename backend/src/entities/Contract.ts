@@ -2,12 +2,6 @@ import { Document, Schema } from 'mongoose';
 
 export const ContractSchema = new Schema(
   {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      index: true,
-    },
     Contract_id: {
       type: Number,
       index: true,
