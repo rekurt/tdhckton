@@ -1,2 +1,6 @@
 #!/bin/bash
-docker-compose exec mongo mongoimport --db tdhack --collection cont --drop --file ./cont.json
+echo 'Input collection name in db'
+read COLNAME
+echo 'Input file name in import folder'
+read FILEPATH
+docker-compose exec mongo mongoimport --db tdhack --collection $COLNAME --drop --file $FILEPATH
