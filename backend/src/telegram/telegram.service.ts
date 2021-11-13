@@ -1,10 +1,10 @@
+import { Telegraf } from 'telegraf';
 import { Injectable } from "@nestjs/common";
 import {
   AMPERSAND_SPLITTER,
   CANCEL_ORDER_PREFIX,
   CATALOG_PREFIX,
   DEFAULT_MESSAGE,
-  NEW_ORDER_PREFIX as EDIT_ORDER_PREFIX,
   SEMICOLON_SPLITTER,
   SPLITTER,
 } from "../constants";
@@ -12,26 +12,29 @@ import {
 import { Catalog, Context } from "../interfaces";
 import {
   formConfirmedOrderString,
-  formGreetings,
   getDeliverOrderString,
   parseMessage
 } from "../helpers";
 import { OrderStatuses } from "../shared.types";
-import { commands } from "src/telegram.config";
+import { InjectBot } from 'nestjs-telegraf';
 
 @Injectable()
 export class TelegramService {
   constructor(
-    private catalogRepo: CatalogRepository,
-    private orderRepo: OrderRepository,
-  ) {}
+    @InjectBot() private bot: Telegraf<any>,
+    private catalogRepository: any,
+    private offerRepository: any,
+  ) {
+    this.bot.start((ctx) => ctx.reply('Welcome'))
+
+  }
 
   async getGreetings(ctx: Context): Promise<string> {
     return 'Hello!';
   }
 
   async getCatalogsNames(): Promise<Catalog[]> {
-    const catalogs = await this.catalogRepo.find();
+    const catalogs = await this.catalogRepository.find();
     return catalogs.map(({ name, description }) => ({
       name,
       description,
@@ -57,7 +60,7 @@ export class TelegramService {
       return this.confirmOrder(message);
     }
 
-    const orders = await this.orderRepo.getOrders();
+    const orders = await this.offerRepository.getOrders();
     const order = orders.find((order) => order.id === message);
     if (order) {
       const resultsMessage = await this.deliverOrder(message);
@@ -89,10 +92,11 @@ export class TelegramService {
     const catalogItem = await this.getItem([catalogName]);
     const updatedCatalog = this.countCostPerItem(catalogItem);
     // return buildCatalogMessage(updatedCatalog);
+    return 'item message';
   }
 
-  async getItem(catalogs: string[]): Promise<ItemEntity[]> {
-    let item = [] as ItemEntity[];
+  async getItem(catalogs: string[]): Promise<any[]> {
+    let item = [] as any[];
 
     // for (const catalog of catalogs) {
     //   const gg = await this.itemRepo.find({
@@ -103,46 +107,27 @@ export class TelegramService {
     return item;
   }
 
-  countCostPerItem(item: ItemEntity[]): ItemFields[] {
+  countCostPerItem(item: any[]): any[] {
     return item.map((x) => ({
       id: x.id,
       name: x.name,
       amount: x.amount / x.quantity,
     }));
-  }
-
-  async handleNewTender(ctx: Context, message: string): Promise<string> {
-    const [, itemId] = parseMessage(message, EDIT_ORDER_PREFIX);
-    const { id } = ctx.from;
-
-    // const order = this.orderRepo.create({
-    //   item,
-    //   users: user,
-    // });
-
-    // await order.save();
-
-    // return
-  }
+  } 
 
   async cancelOrder(message: string) {
     const [orderId] = parseMessage(message, CANCEL_ORDER_PREFIX);
-    const order = await this.orderRepo.findOne(orderId);
+    const order = await this.offerRepository.findOne(orderId);
     order.status = OrderStatuses.CANCELLED;
     await order.save();
-
-    return formCancelledOrderString(order.users?.name);
-  }
+    return 'orderIsCancelled';
+    }
 
   async confirmOrder(message: string) {
     const [orderId, strQuantity] = parseMessage(message, SEMICOLON_SPLITTER);
     const requiredQuantity = +strQuantity;
-    const order = await this.orderRepo.findOne(orderId);
+    const order = await this.offerRepository.findOne(orderId);
     const { quantity, amount } = order.item;
-
-    if (requiredQuantity > order.item.quantity) {
-      return formNotEnoughItem(quantity);
-    }
 
     const cost = Math.round((amount / quantity) * requiredQuantity);
     order.item.quantity -= requiredQuantity;
@@ -159,7 +144,7 @@ export class TelegramService {
 
 
   async getOrders(): Promise<string> {
-    const orders = await this.orderRepo.getOrders();
+    const orders = await this.offerRepository.getOrders();
     const confirmedOrders = orders
       .filter((x) => x.status === OrderStatuses.CONFIRMED)
       .sort((a, b) => Number(b.createdAt) - Number(a.createdAt));
@@ -167,15 +152,15 @@ export class TelegramService {
   }
 
   async deliverOrder(orderId: string): Promise<string> {
-    const order = await this.orderRepo.findOne(orderId);
+    const order = await this.offerRepository.findOne(orderId);
     order.status = OrderStatuses.DELIVERED;
-    await this.orderRepo.update(orderId, order);
+    await this.offerRepository.update(orderId, order);
     return getDeliverOrderString(orderId);
   }
 
   async getCatalog(message: string): Promise<void> {
     const [, name] = parseMessage(message, AMPERSAND_SPLITTER);
-    const catalog = await this.catalogRepo.findOne({ name });
+    const catalog = await this.catalogRepository.findOne({ name });
     return catalog;
   }
 
@@ -188,7 +173,7 @@ export class TelegramService {
 
 
     
-    // const catalog = await this.catalogRepo.findOne{);
+    // const catalog = await this.catalogRepository.findOne{);
    // let bid = await this.bidRepo.findOne();
 
  

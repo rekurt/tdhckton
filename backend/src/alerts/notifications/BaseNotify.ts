@@ -1,4 +1,4 @@
-import { TelegramService } from './../modules/telegram/telegram.service';
+import { TelegramService } from '../modules/telegram/telegram.service';
 export abstract class BaseNotify {
 
     constructor(telegramService: TelegramService) {
