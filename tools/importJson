@@ -3,4 +3,4 @@ echo 'Input collection name in db'
 read COLNAME
 echo 'Input file name in import folder'
 read FILEPATH
-docker-compose exec mongo mongoimport --db tdhack --collection $COLNAME --drop --file $FILEPATH
+docker-compose exec mongo mongoimport --db tdhack --collection $COLNAME --drop --file /data/import/$FILEPATH
