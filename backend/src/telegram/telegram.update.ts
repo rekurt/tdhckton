@@ -1,45 +1,41 @@
 import { Command, Ctx, Message, On, Start, Update } from "nestjs-telegraf";
 import { TelegramService } from "./telegram.service";
 import { Context } from "../entities/interfaces";
-import { formCatalogString } from "../helpers";
 import {
   CANCEL_ORDER_PREFIX,
 
 } from "../constants";
-import { AuctionService } from "src/auction/auction.service";
 
 @Update()
 export class TelegramUpdate {
   constructor(
     private telegramService: TelegramService,
-    private auctionService: AuctionService,
+    // private auctionService: AuctionService,
   ) {}
 
   @Start()
   async start(@Ctx() ctx: Context) {
-    const greetings = await this.telegramService.getGreetings(ctx);
+    const greetings = this.telegramService.getGreetings(ctx);
     await ctx.reply(greetings);
   }
 
   @Command('show_cats')
   async showCategories(@Ctx() ctx: Context) {
-    const catalogs = await this.auctionService.getCatalogsNames();
-    const catalogsString = formCatalogString(catalogs, 'PICK_CATALOG_TEXT');
-
+    const catalogs =  [] //await this.auctionService.getCatalogsNames();
+    const catalogsString = 'catalogs';
     await ctx.reply(catalogsString, { parse_mode: 'HTML' });
   }
 
   @Command('edit_offers')
   async editOffers(@Ctx() ctx: Context) {
-    const catalogs = await this.auctionService.getCatalogsNames();
-    const catalogsString = formCatalogString(catalogs, 'PICK_CATALOG_TEXT');
-
+    const catalogs = ['name1', 'name2'] //await this.auctionService.getCatalogsNames();
+    const catalogsString = catalogs.toString(); //formCatalogString(catalogs, 'PICK_CATALOG_TEXT');
     await ctx.reply(catalogsString, { parse_mode: 'HTML' });
   }
 
   @Command('offers')
   async getOrders(@Ctx() ctx: Context): Promise<void> {
-    const result = await this.auctionService.getOffers();
+    const result = 'res1' // await this.auctionService.getOffers();
     console.log({result})
     ctx.reply('result?  orders', { parse_mode: 'HTML' });
   }

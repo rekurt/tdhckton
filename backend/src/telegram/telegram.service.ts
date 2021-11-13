@@ -1,14 +1,15 @@
 import { Telegraf } from 'telegraf';
 import { Injectable } from "@nestjs/common";
- 
+
 import { Context } from "../entities/interfaces";
 import { InjectBot } from 'nestjs-telegraf';
-import { AuctionService } from 'src/auction/auction.service'; 
+// import { AuctionService } from 'src/auction/auction.service'; 
+
 @Injectable()
 export class TelegramService {
   constructor(
     @InjectBot() private bot: Telegraf<any>,
-    private auctionService: AuctionService
+//    private auctionService: AuctionService
   ) {
     this.bot.start((ctx) => ctx.reply(this.getGreetings(ctx)))
   }

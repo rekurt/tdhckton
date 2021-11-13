@@ -30,5 +30,5 @@ export interface OrderFields {
   catalog: string,
   orderQuantity: number,
   orderAmount: number,
-  status: OrderStatuses,
+  status: OfferStatuses,
 }

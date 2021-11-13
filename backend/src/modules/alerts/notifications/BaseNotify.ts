@@ -1,12 +1,11 @@
-import { TelegramService } from '../modules/telegram/telegram.service';
 export abstract class BaseNotify {
 
-    constructor(telegramService: TelegramService) {
+    constructor() {
 
     }
 
-    handle(): Promise<any> {
+    async handle(): Promise<string> {
 
-        return '';
+        return 'kukusiki';
     }
 }
