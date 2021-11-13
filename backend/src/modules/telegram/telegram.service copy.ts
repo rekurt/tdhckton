@@ -12,7 +12,6 @@ import {
 import { Catalog, Context } from "../interfaces";
 import {
   formConfirmedOrderString,
-  formGreetings,
   getDeliverOrderString,
   parseMessage
 } from "../../helpers";
