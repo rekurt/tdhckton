@@ -4,11 +4,10 @@ export class ActionService {
     bot: any;
     telegramChatRepository: any;
     userRepository: any;
-    logger: any;
+    logger = new Logger(ActionService.name)
 
     constructor() {
 
-this.logger = new Logger(ActionService.name)
 
   this.bot.hears('➕ /subscribe', async (ctx) => {
     return this.subscribe.call(this, ctx);
@@ -339,20 +338,12 @@ public async sendStatusMessage({ user, messages } : { user: User, messages: {} }
     console.log(err);
   }
 }
+ 
 
-/**
- * Отправить текстовое сообщение подписчику.
- *
- * @param {{ user: User, message: string }} { user, message }
- * @return {Promise} Promise void
- * @memberof BotService
- */
+
 public async sendMessage({ user, message } : { user: User, message: string }): Promise<void> {
-  const promises = [];
-  user.telegramChats.forEach((telegramChat: TelegramChat) => {
-    promises.push(this.bot.telegram.sendMessage(telegramChat.chatId, message));
-  })
-
+  const promises = [this.bot.telegram.sendMessage(user.chatId, message)];
+  
   try {
     await Promise.all(promises);
   } catch(err) {

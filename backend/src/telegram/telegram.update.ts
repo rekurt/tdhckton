@@ -6,10 +6,14 @@ import {
   CANCEL_ORDER_PREFIX,
 
 } from "../constants";
+import { AuctionService } from "src/auction/auction.service";
 
 @Update()
 export class TelegramUpdate {
-  constructor(private telegramService: TelegramService) {}
+  constructor(
+    private telegramService: TelegramService,
+    private auctionService: AuctionService,
+  ) {}
 
   @Start()
   async start(@Ctx() ctx: Context) {
@@ -17,18 +21,27 @@ export class TelegramUpdate {
     await ctx.reply(greetings);
   }
 
-  @Command('edit_order')
+  @Command('show_cats')
   async showCategories(@Ctx() ctx: Context) {
-    const catalogs = await this.telegramService.getCatalogsNames();
+    const catalogs = await this.auctionService.getCatalogsNames();
     const catalogsString = formCatalogString(catalogs, 'PICK_CATALOG_TEXT');
 
     await ctx.reply(catalogsString, { parse_mode: 'HTML' });
   }
 
-  @Command('orders')
+  @Command('edit_offers')
+  async editOffers(@Ctx() ctx: Context) {
+    const catalogs = await this.auctionService.getCatalogsNames();
+    const catalogsString = formCatalogString(catalogs, 'PICK_CATALOG_TEXT');
+
+    await ctx.reply(catalogsString, { parse_mode: 'HTML' });
+  }
+
+  @Command('offers')
   async getOrders(@Ctx() ctx: Context): Promise<void> {
-    const result = await this.telegramService.getOrders();
-    ctx.reply(result, { parse_mode: 'HTML' });
+    const result = await this.auctionService.getOffers();
+    console.log({result})
+    ctx.reply('result?  orders', { parse_mode: 'HTML' });
   }
 
   @Command('deliver_order')
@@ -57,5 +70,7 @@ export class TelegramUpdate {
     if (message.includes(CANCEL_ORDER_PREFIX)) {
       await this.start(ctx);
     }
+    console.log(ctx)
   }
+
 }

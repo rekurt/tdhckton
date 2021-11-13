@@ -15,7 +15,7 @@ export interface BaseSortingFields {
   updatedAt?: SortDirection;
 }
 
-export enum OrderStatuses {
+export enum OfferStatuses {
   UNCONFIRMED= 'UNCONFIRMED',
   CANCELLED = 'CANCELLED',
   CONFIRMED = 'CONFIRMED',

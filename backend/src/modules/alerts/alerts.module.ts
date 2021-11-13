@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { TelegramModule } from 'nestjs-telegram';
-import { AlertsController } from './alerts.controller';
 import { AlertsService } from './alerts.service';
 
 @Module({
@@ -15,7 +13,6 @@ import { AlertsService } from './alerts.service';
       inject: [ConfigService],
     }),
   ],
-  controllers: [AlertsController],
   providers: [AlertsService],
 })
 export class AlertsModule {}

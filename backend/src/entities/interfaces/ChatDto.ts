@@ -1,41 +1,19 @@
-export class ChatDTO {
-
-  
-  import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, Unique } from "typeorm";
-  import { User } from "src/users/user.entity";
-  import { ScreenshotTimeIntervals } from "src/users/screenshot-interval.entity";
-  
-  @Entity()
-  @Unique('UQ_subscriber', ['telegramId', 'chatId'])
-  @Unique('UQ_chatTitle', ['chatTitle'])
-  export class TelegramChat  {
+ export class ChatDTO {
      id: number;
   
-     telegramId: string
+     telegramId?: string
   
      chatId: string
-  
-     isActive: boolean
+     
+     isAuth: boolean
+     
+     authCode: string
   
      chatTitle: string
+    
+     createdAt: Date;
   
-     user: User
-  
-     userId: number;
-  
-     screenshotTimeInterval: ScreenshotTimeIntervals
-  
-     screenshotTimeIntervalId: number
-   
-     hours: string
-  
-     ifOnline: boolean
-  
-     ifOffline: boolean
-  
-     createdDate: Date;
-  
-     updatedDate: Date;
+     updatedAt: Date;
   }
 
 
