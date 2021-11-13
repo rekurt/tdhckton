@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo 'Input DB name'
+read DB
+sudo docker-compose exec mongo mongodump -h localhost -u root -p VES7WXTMQZ9322T7XOQPHX8Y --authenticationDatabase admin -d $DB -o /arbitrage/bcp

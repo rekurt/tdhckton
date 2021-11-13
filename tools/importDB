@@ -1,0 +1,2 @@
+#!/bin/bash
+docker-compose exec mongo mongorestore -h localhost -u root -p VES7WXTMQZ9322T7XOQPHX8Y --authenticationDatabase admin -d baller /back/arbitrage

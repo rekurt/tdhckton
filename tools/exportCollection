@@ -1,0 +1,4 @@
+#!/bin/bash
+echo 'Input collection name'
+read COLLECTION
+mongoexport -d admin - c $COLLECTION -o export.json

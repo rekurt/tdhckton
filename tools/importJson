@@ -1,0 +1,2 @@
+#!/bin/bash
+docker-compose exec mongo mongoimport --db tdhack --collection cont --drop --file ./cont.json

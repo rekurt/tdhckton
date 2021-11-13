@@ -31,42 +31,11 @@ services:
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
-         - 6677:6379
+         - 6479:6379
     networks:
       place:
         aliases:
           - redis
-  nginx:
-    build:
-      context: .
-      dockerfile: ./nginx.Dockerfile
-    ports:
-      - 80:80 #api
-      - 443:443 #front
-    networks:
-      place:
-        aliases:
-          - nginx
-    links:
-      - api
-    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
-    depends_on:
-      - api
-    volumes:
-      - ./front/public:/usr/src/app
-      - ./vhosts:/etc/nginx/sites-enabled
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/opt/certbot
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/var:/var/lib/letsencrypt
-      - ./data/certbot/www:/var/www/html
-    depends_on:
-      - nginx
-    command: certonly --webroot --non-interactive -d anoya.io --agree-tos --webroot-path=/var/www/html --email crypto.viv@yandex.ru
   mongo-express:
      image: mongo-express
      restart: always
@@ -81,6 +50,8 @@ services:
     restart: always
     volumes:
       - ./data/db:/data/db
+    ports:
+      - 28017:27017 
     networks:
       place:
         aliases:
