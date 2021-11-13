@@ -95,9 +95,9 @@ ${itemName}, в  кол. ${quantity}
 }
 
 const FAKE_PURCHASES = [
-  { itemName: 'Автомат Калашникова', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563' },
-  { itemName: 'Автомат Бориса', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563' },
-  { itemName: 'Автомат Никиты', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563' },
-  { itemName: 'Автомат Олега', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563' },
-  { itemName: 'Автомат Влада', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563' },
+  { itemName: 'Автомат Калашникова', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563', isProcessed: false },
+  { itemName: 'Автомат Бориса', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563', isProcessed: false },
+  { itemName: 'Автомат Никиты', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563', isProcessed: false },
+  { itemName: 'Автомат Олега', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563', isProcessed: false },
+  { itemName: 'Автомат Влада', quantity: 100, beforeEnd: '1 ч. 5 м.', currentPrice: 100, customerName: 'Управление образованием', currentPriceOneItem: 1, id: '36к8268563', isProcessed: false },
 ]
