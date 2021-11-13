@@ -1,5 +1,5 @@
 export enum IOfferStatus {
-    Success = 'success',
-    Declined = 'declined',
-    Pending = 'pending',
+  Success = 'success',
+  Declined = 'declined',
+  Pending = 'pending',
 }

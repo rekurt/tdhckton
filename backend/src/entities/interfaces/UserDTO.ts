@@ -1,16 +1,13 @@
 export class UserDTO {
-    readonly id: string;
+  readonly id: string;
 
-    chatID?: string
+  chatID?: string;
 
-    authToken?: string;
+  authToken?: string;
 
-    "name": string;
+  'name': string;
 
-    "inn": number;
+  'inn': number;
 
-    type: string; // IUserTypeDto
-
-  }
-
-
+  type: string; // IUserTypeDto
+}

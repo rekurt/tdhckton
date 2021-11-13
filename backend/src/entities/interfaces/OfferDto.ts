@@ -1,6 +1,6 @@
 import { IOfferStatus } from './IOfferStatus';
 
-export class ContractDTO {
+export class OfferDTO {
   readonly id: string;
 
   supplierID: string;
