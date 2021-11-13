@@ -1,20 +1,19 @@
 import { Module } from "@nestjs/common";
 import { TelegrafModule } from "nestjs-telegraf";
-import { config } from "../../../Node-telegram-bot/src/app/config/app.config";
 import { APP_FILTER } from "@nestjs/core";
 import { TelegrafExceptionFilter } from "src/exception-filters/global-exception-handler.filter";
 
 @Module({
   imports: [
     TelegrafModule.forRoot({
-      token: config.BOT_TOKEN,
+      token: '2113185753:AAF1HOF2MiUqIGCbktkysV_xUDb9WN47y8c',
     }),
     TelegrafModule,
   ],
   providers: [
     {
       provide: APP_FILTER,
-      useClass: TelegrafExceptionFilter​​,
+      useClass: TelegrafExceptionFilter,
     },
   ],
 })
