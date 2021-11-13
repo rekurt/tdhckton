@@ -12,9 +12,9 @@ export class TelegramUpdate {
     private telegramService: TelegramService,
     // private auctionService: AuctionService,
   ) {
-console.log({
-  TelegramUpdate
-})
+// console.log({
+//   TelegramUpdate
+// })
 
   }
 
@@ -41,7 +41,7 @@ console.log({
   @Command('offers')
   async getOrders(@Ctx() ctx: Context): Promise<void> {
     const result = 'res1' // await this.auctionService.getOffers();
-    console.log({result})
+    // console.log({result})
     ctx.reply('result?  orders', { parse_mode: 'HTML' });
   }
 

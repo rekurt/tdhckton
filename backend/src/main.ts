@@ -7,8 +7,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const bot = app.get(getBotToken());
   bot.use(Telegraf.log());
-  console.log({ bot });
-
   await app.listen(3000);
   console.log('App started at port 3000');
 }
