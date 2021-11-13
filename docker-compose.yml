@@ -7,16 +7,8 @@ services:
       args:
         - NODE_ENV=development
     environment:
-      - APP_ENV=dev
-      - APP_URL=http://localhost:4214
-      - APP_HOST=localhost
-      - WEBTOKEN_SECRET_KEY=uAsBwuAsBw6WxqD6WxqDuAsBw6WxqDuAsBw6WxqD
-      - WEBTOKEN_EXPIRATION_TIME=240000
-      - DB_URL="mongodb://mongo/anoya"
-      - MAILGUN_DOMAIN="smtp.gmail.com"
-      - MAILGUN_HOST="465"
-      - MAILGUN_KEY="pass"
-      - MAILGUN_FROM="Amazing site!"
+      - APP_ENV=dev 
+      - DB_URL="mongodb://mongo/tdhack" 
     networks:
       place:
         aliases:
@@ -24,14 +16,14 @@ services:
     depends_on:
       - mongo
     volumes:
-      - .:/usr/src/app
+      - ./backend:/usr/src/app
     command: npm run start:dev
   redis:
     image: bitnami/redis:latest
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
-         - 6479:6379
+      - 6479:6379
     networks:
       place:
         aliases:
