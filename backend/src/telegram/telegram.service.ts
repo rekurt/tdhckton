@@ -11,7 +11,9 @@ export class TelegramService {
     @InjectBot() private bot: Telegraf<any>,
 //    private auctionService: AuctionService
   ) {
+
     this.bot.start((ctx) => ctx.reply(this.getGreetings(ctx)))
+    
   }
   
    getGreetings(ctx: any): string {

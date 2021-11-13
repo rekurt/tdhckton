@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TelegrafModule } from "nestjs-telegraf";
 import token from "./config/token";
+import { TelegramModule } from "./telegram/telegram.module";
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import token from "./config/token";
       token
     }),
     TelegrafModule,
+    TelegramModule
 
   ],
   providers: [

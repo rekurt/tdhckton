@@ -11,7 +11,12 @@ export class TelegramUpdate {
   constructor(
     private telegramService: TelegramService,
     // private auctionService: AuctionService,
-  ) {}
+  ) {
+console.log({
+  TelegramUpdate
+})
+
+  }
 
   @Start()
   async start(@Ctx() ctx: Context) {
