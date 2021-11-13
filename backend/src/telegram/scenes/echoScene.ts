@@ -1,7 +1,7 @@
 import { Scenes, Markup } from 'telegraf';
 
 const echoScene = new Scenes.BaseScene<Scenes.SceneContext>('echo')
-echoScene.enter((ctx) => show(ctx))
+echoScene.enter((ctx) => console.log('qqqqq'))
 echoScene.leave((ctx) => ctx.reply('exiting echo scene'))
 // echoScene.command('back', leave<Scenes.SceneContext>())
 echoScene.hears('xui', (ctx) => console.log('xui tebe'))
