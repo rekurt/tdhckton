@@ -11,3 +11,9 @@ export interface ItemFields {
   name: string;
   amount: number;
 }
+
+export enum IOfferStatus {
+  Success = 'success',
+  Declined = 'declined',
+  Pending = 'pending',
+}

@@ -1,5 +1,3 @@
-import { OfferDTO } from 'src/entities/interfaces/Contracts';
-
 export interface IAutoBid {
   offerId: number;
   userId: string;
@@ -8,14 +6,7 @@ export interface IAutoBid {
 }
 
 export class BidsService {
-  constructor() {
-
-  }
-
-  setBid(chatId: number, bidConfig) {
-
-  }
-  
+  setBid(chatId: number, bidConfig) {}
   setBidConfirm(chatId: number, bidConfig) {}
   setAutoBid(chatId: number, offerId: string, amount: number) {}
   setAutoBidConfirm(chatId: number, bidConfig: any) {}

@@ -1,16 +1,16 @@
-import { Module } from "@nestjs/common";
-import { TelegrafModule } from "nestjs-telegraf";
-import token from "./config/token";
-import { TelegramModule } from "./telegram/telegram.module";
+import { Module } from '@nestjs/common';
+import { TelegrafModule } from 'nestjs-telegraf';
+import token from './config/token';
+import { TelegramModule } from './telegram/telegram.module';
 
 @Module({
   imports: [
     // TelegrafExceptionFilter,
     TelegrafModule.forRoot({
-      token
+      token,
     }),
     TelegrafModule,
-    TelegramModule
+    TelegramModule,
   ],
   providers: [
     // {

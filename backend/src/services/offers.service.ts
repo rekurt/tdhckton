@@ -1,6 +1,6 @@
-export class OffersService {
+import { Injectable } from '@nestjs/common';
 
-    constructor() {
-        
-    }
+@Injectable()
+export class OfferService {
+  constructor() {}
 }

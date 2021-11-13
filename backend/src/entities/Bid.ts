@@ -1,6 +1,6 @@
 import { Document, Schema } from 'mongoose';
 
-export const ContractSchema = new Schema(
+export const BidSchema = new Schema(
   {
     email: {
       type: String,

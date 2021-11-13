@@ -1,7 +1,7 @@
 import { Telegraf, Markup, session } from 'telegraf';
 import { Injectable } from "@nestjs/common";
 
-import { Context } from "../entities/interfaces";
+import { Context } from "../entities/interfaces/interfaces";
 import { InjectBot } from 'nestjs-telegraf';
 // import { AuctionService } from 'src/auction/auction.service'; 
 
