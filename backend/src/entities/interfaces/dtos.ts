@@ -33,13 +33,13 @@ export class BidDTO {
 export class AuctionDTO {
   readonly id: string;
 
-  'auctionId': string;
+  auctionId: string;
 
   'name': string;
 
   city: string;
 
-  'bids': BidDTO[];
+  bids: BidDTO[];
 
   winner?: string;
 

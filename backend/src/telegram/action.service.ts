@@ -1,8 +1,8 @@
-import { BidsService } from './../services/bids.service';
 import { Injectable } from '@nestjs/common';
-import { OfferService } from 'src/services/offers.service';
-import { OfferDTO } from 'src/entities/interfaces/dtos';
-import { UserService } from 'src/entities/user/user.service';
+import { BidsService } from '../core/bids.service';
+import { OfferService } from '../core/offers.service';
+import { OfferDTO } from '../entities/interfaces/dtos';
+import { UserService } from '../entities/user/user.service';
 
 @Injectable()
 export class ActionService {

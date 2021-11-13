@@ -12,7 +12,7 @@ export class UserDTO {
   'inn': number;
 }
 
-export type User = UserDTO & Document
+export type User = UserDTO & Document;
 
 export const UserSchema = new Schema({
   chatID: {

@@ -2,28 +2,7 @@ import { Document, Schema } from 'mongoose';
 
 export const BidSchema = new Schema(
   {
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      index: true,
-    },
-    Contract_id: {
-      type: Number,
-      index: true,
-    },
-    Contract_name: {
-      type: String,
-      index: true,
-    },
-    Category: {
-      index: true,
-      type: String,
-    },
-    Category_id: {
-      index: true,
-      type: String,
-    },
+    
   },
   { timestamps: true },
 );

@@ -1,11 +1,11 @@
-import { CTESchema } from './../entities/CTE';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema } from 'src/entities/user/user.model';
-import { UserService } from 'src/entities/user/user.service';
-import { ContractSchema } from 'src/entities/Contract';
+import { UserSchema } from '../entities/user/user.model';
+import { UserService } from '../entities/user/user.service';
+import { ContractSchema } from '../entities/Contract';
+import { CTESchema } from '../entities/CTE';
 import { BidsService } from './bids.service';
-import { BidSchema } from 'src/entities/Bid';
+import { BidSchema } from '../entities/Bid';
 import { OfferService } from './offers.service';
 
 @Module({
@@ -16,6 +16,6 @@ import { OfferService } from './offers.service';
     MongooseModule.forFeature([{ name: 'Bid', schema: BidSchema }]),
   ],
   providers: [UserService, OfferService, BidsService],
-  exports: [UserService],
+  exports: [UserService, OfferService, BidsService],
 })
-export class UserModule {}
+export class CoreModule {}
