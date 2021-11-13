@@ -1,4 +1,4 @@
-import { Telegraf } from 'telegraf';
+import { Telegraf, Markup } from 'telegraf';
 import { Injectable } from "@nestjs/common";
 
 import { Context } from "../entities/interfaces";
@@ -13,59 +13,37 @@ export class TelegramService {
   ) {
 
     this.bot.start((ctx) => ctx.reply(this.getGreetings(ctx)))
+    // this.bot.on('sticker', (ctx) => ctx.reply('👍'))
+    // this.bot.hears('auth', (ctx) => ctx.reply('Hey there'))
     
   }
   
    getGreetings(ctx: any): string {
-    return 'Hello '+ctx.botInfo+'! ';
+     const { startPayload } = ctx
+    //  console.log('ctx.startPayload')
+    //  if (!startPayload) return "Требуется аутентификация"
+    // return 'Добро пожаловать! ✋ \nИП Васильев'
+     return ctx.reply('Добро пожаловать! ✋ \nИП Васильев', Markup.inlineKeyboard([
+      Markup.button.callback('Горящие закупки 🔥', 'HOT_PURCHASE'),
+      Markup.button.callback('Активные закупки', 'ACTIVE_PURCHASE'),
+      Markup.button.callback('Уведомления', 'NOTIFICATIONS'),
+      Markup.button.callback('Мои подписки', 'MY_SUBSCRIPTIONS'),
+      Markup.button.callback('Фильтры', 'FILTERS'),
+    ], { wrap: () => true  }))
+    
   }
   
   
-    async handleTextMessage(ctx: Context, message: string): Promise<string> {
-      console.log({
-       ctx, message
-      })
+    async handleTextMessage(ctx: Context, message: string): Promise<any> {
+      // console.log({
+      //  ctx, message
+      // })
       // TODO: FIX OR DELETE?
-      return message;
-
-      // // const chatId = ctx.from.id.toString()
-  
-      // if (message.includes(CATALOG_PREFIX)) {
-      //   return this.auctionService.getCatalogsItem(message);
-      // }
-  
-      // if (message.includes(CANCEL_ORDER_PREFIX)) {
-      //   return this.auctionService.cancelOffer(message);
-      // }
-  
-      // if (message.includes(SEMICOLON_SPLITTER)) {
-      //   return this.auctionService.confirmOffer(message);
-      // }
-  
-      // const offers = await this.auctionService.getOffers();
-      // const offer:OfferDTO = offers.find((offer) => offer.id === message);
-      // if (offer) {
-      //   const resultsMessage = await this.auctionService.deliverOffer(message);
-      //   ctx.telegram.sendMessage(
-      //     offer.users.telegramId,
-      //     'offer'+offer+', ORDER_UPDATED_MESSAGE',
-      //     { parse_mode: 'HTML' },
-      //   );
-      //   return resultsMessage;
-      // }
-   
-  
-      // if (message.includes('/newBid')) {
-      //   await this.addBid(message);
-      //   const catalogs = await this.getCatalogsNames();
-      //   const catalogsNames = catalogs.map((x) => x.name);
-      //   const catalogsItem = await this.getItem(catalogsNames);
-      //   const offeredCatalogItem = catalogsItem.sort(
-      //     (a, b) => Number(a.createdAt) - Number(b.createdAt),
-      //   );
-  
-      // }
-  
-      // return DEFAULT_MESSAGE;
+       return ctx.reply('Custom buttons keyboard',Markup.inlineKeyboard([
+        Markup.button.callback('Movie', 'MOVIE_ACTION'),
+        Markup.button.callback('Theater', 'THEATER_ACTION'),
+      ])
+   )
+      
     }
 }
