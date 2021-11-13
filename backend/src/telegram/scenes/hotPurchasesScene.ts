@@ -62,6 +62,7 @@ hotPurchasesScene.action('HOT_PURCHASE_LATER', (ctx) => {
 
 hotPurchasesScene.action('zzz', (ctx) => {
     console.log('qqq')
+    console.log(ctx.wizard)
 
     ctx.reply('You choose movie, your loss');
     //   ctx.session.hotPurchases.preferenceType = 'Movie';
