@@ -1,6 +1,6 @@
 import { Scenes, Markup } from 'telegraf';
 
-export const hotPurchasesScene = new Scenes.BaseScene<Scenes.SceneContext>(
+const hotPurchasesScene = new Scenes.BaseScene<Scenes.SceneContext>(
   'HOT_PURCHASES_SCENE',
 );
 
@@ -8,7 +8,7 @@ hotPurchasesScene.enter((ctx: any) => {
   let currentPurchase = null;
   const index = 0;
 
-  ctx.session = { hotPurchases: FAKE_PURCHASES };
+  ctx.session.hotPurchases = FAKE_PURCHASES
   ctx.session.hotPurchases = ctx.session.hotPurchases.filter(
     (p) => !p.isProcessed,
   );
@@ -32,7 +32,17 @@ hotPurchasesScene.enter((ctx: any) => {
     id,
   } = currentPurchase;
 
-  return ctx.reply('8',
+  return ctx.reply(`
+  Горящие закупки: ${index + 1} из ${count}
+  
+  Номер: ${id}
+  
+  ${itemName}, в  кол. ${quantity}
+  До завершения: ${beforeEnd}
+  
+  Текущая цена: ${currentPrice} р., за единицу ${currentPriceOneItem} р.
+  
+  Заказчик: ${customerName}`,
     Markup.inlineKeyboard(
       [
         Markup.button.callback('Сделать ставку', 'HOT_PURCHASE_BID'),
@@ -41,7 +51,7 @@ hotPurchasesScene.enter((ctx: any) => {
           'HOT_PURCHASE_AUTO_BID',
         ),
         Markup.button.callback('Посмотрю позже', 'HOT_PURCHASE_LATER'),
-        Markup.button.callback('Не интересно', 'zzz'),
+        Markup.button.callback('Не интересно', 'HOT_PURCHASE_NOT_INTRESTED'),
       ],
       { wrap: () => true },
     ),
